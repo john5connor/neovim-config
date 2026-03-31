@@ -23,6 +23,9 @@ vim.o.termguicolors = true
 -- Disable line wrap
 vim.o.wrap = false
 
+-- Faster update time for triggering LSP error messages on hover
+vim.o.updatetime = 750
+
 -- Map leader to space
 vim.g.mapleader = " "
 
@@ -50,3 +53,15 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+-- LSP Hover
+vim.keymap.set('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<cr>')
+
+-- Go to definition
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true, desc = 'Go to Definition' })
+
+-- Go to referecnes
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, desc = 'Go to references (usages)' })
+
+-- Go back (Jumps to previous position)
+vim.keymap.set('n', '<C-o>', '<C-o>', { noremap = true, silent = true, desc = 'Go Back' })
+

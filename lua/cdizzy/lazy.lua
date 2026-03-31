@@ -21,23 +21,40 @@ local plugins = {
     tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
+
   {
     "folke/tokyonight.nvim",
-    name = "tokyonight", 
+    name = "tokyonight",
     lazy = false,
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme tokyonight]])
-    end
+    end,
   },
+
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
   },
+
   'nvim-treesitter/playground',
   'theprimeagen/harpoon',
   'mbbill/undotree',
   'tpope/vim-fugitive',
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("neo-tree").setup({})
+    end,
+  },
+
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -45,9 +62,10 @@ local plugins = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
     },
-  }
+  },
 }
 
 local opts = {}
 
 require("lazy").setup(plugins, opts)
+
