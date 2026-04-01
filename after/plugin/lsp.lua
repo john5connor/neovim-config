@@ -1,4 +1,3 @@
-local lspconfig = require('lspconfig')
 local cmp = require('cmp')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -44,16 +43,16 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
-lspconfig.pyright.setup({
+vim.lsp.config('pyright', {
   capabilities = capabilities,
 })
+vim.lsp.enable('pyright')
 
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
   capabilities = capabilities,
   cmd = { '/lib/llvm-18/bin/clangd', '--background-index', '--clang-tidy' },
   init_options = {
     fallbackFlags = { '-std=c++17' },
   },
 })
-
-
+vim.lsp.enable('clangd')
